@@ -31,10 +31,10 @@ const MoviePost = () => {
         <div className="grid grid-cols-3 p-30 gap-10 -mt-10">
           {movies.map((movie) => {
             return (
-              <NavLink key={movie.id} to={`/post/${movie.id}`}>
+               <NavLink key={movie.id} to={`/post/${movie.id}`}>
                 <Card className="p-10">
                   <div className="flex justify-between gap-15">
-                    {" "}
+                    {" "} 
                     <img
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       alt="sdff"
