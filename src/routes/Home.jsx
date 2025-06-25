@@ -27,7 +27,7 @@ const Home = () => {
         <Carousel
           plugins={[
             Autoplay({
-              delay: 2000,
+              delay: 5000,
             }),
           ]}
         className="h-full flex justify-center items-center">

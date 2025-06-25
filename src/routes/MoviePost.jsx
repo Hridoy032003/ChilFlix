@@ -25,10 +25,10 @@ const MoviePost = () => {
   const movies = data.results;
   return (
     <div>
-      <Nevbar />
+      <Nevbar  />
       <div className=" bg-gray-800 ">
-        <h1 className="font-bold text-5xl p-10 text-white ml-15">All Movies</h1>
-        <div className="grid grid-cols-3 p-30 gap-10 -mt-10">
+        <h1 className="font-bold text-5xl p-10 text-white ml-15 ">All Movies</h1>
+        <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 p-30 gap-10 -mt-10">
           {movies.map((movie) => {
             return (
                <NavLink key={movie.id} to={`/post/${movie.id}`}>

@@ -10,7 +10,7 @@ const Nevbar = () => {
     const { data, isLoading, isError, error } = useApi();
     const [title, setTitle] = useState('');
     const [isFocused, setIsFocused] = useState(false); 
-
+ const [menu,setMenu]=useState(false    )
     
     const debouncedSearch = useCallback(
         debounce((value) => {
@@ -51,9 +51,9 @@ const Nevbar = () => {
             <div className='px-20 text-block flex gap-10 text-md ml-40'>
                 <Link to='/' className='hover:text-gray-400'>Home</Link>
                 <Link to='/Movie' className='hover:text-gray-400'>Top Movies</Link>
-                <Link to='/hsdkjh' className='hover:text-gray-400'>WatchList</Link>
+              
             </div>
-            <div className='relative flex px-10 items-center gap-7'>
+            <div className='relative flex px-10 items-center gap-7  '>
                <div>
                     <Input
                         placeholder="Search"
@@ -74,12 +74,17 @@ const Nevbar = () => {
                         </div>
                     )}
                </div>
-                <SignedOut>
+                {/* <SignedOut>
                     <SignInButton className='bg-black text-white rounded-xl px-6 py-2'/>
                 </SignedOut>
                 <SignedIn>
                     <UserButton />
-                </SignedIn>
+                </SignedIn> */}
+                <Link to='/Login'>
+                <Button>
+                    Sing in
+                </Button>
+                </Link>
             </div>
         </div>
     );

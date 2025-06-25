@@ -40,23 +40,25 @@ const MoviePostId = () => {
         <>
             <Nevbar />
             <div className="bg-slate-800 h-screen flex justify-center items-center">
-                <Card className="p-10">
-                                  <div className="flex justify-between gap-15">
+                <Card className="p-15">
+                                  <div className="flex justify-between gap-15 ">
                                     {" "} 
                                     <img
                                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                       alt="sdff"
-                                      className="h-50 w-50 object-cover rounded-xl"
+                                      className="h-90 w-70 object-cover rounded-xl"
                                     />
-                                    <div className="flex flex-col  container ">
+                                    <div className="flex flex-col  container w-100 gap-4">
                                       <h2 className="text-2xl ">{movie.title}</h2>
                                       <span>Rating: {movie.vote_average}</span>
-                                      <div>
+               
                                 <p>Tagline:{movie.tagline}</p>
+                                <span className=''>{movie.overview}</span>
+                <a href={movie.homepage}>CheckOut Movie</a>
                                         <Button className="coursar-pointer">
                                           Add to Watchlist
                                         </Button>
-                                      </div>
+                                  
                                     </div>
                                   </div>
                                 </Card>
