@@ -7,6 +7,7 @@ import SingUp from "./routes/SingUp";
 import SingIn from "./routes/SingIn";
 import MoviePost from "./routes/MoviePost";
 import MoviePostId from "./routes/MoviePostId";
+import WatchlistPage from "./routes/WatchlistPage"; // Import WatchlistPage
 import { useState } from "react";
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/Login" element={<SingIn setToken={setToken}/>} />
         {token ? <Route path="/Movie" element={<MoviePost />} /> : <Route path="/Login" element={<SingIn />} />}
         <Route path="/post/:id" element={<MoviePostId />} />
+         <Route path="/watchlist" element={<WatchlistPage />} /> {/* Added Watchlist Route */}
       </Routes>
     </Router>
 
