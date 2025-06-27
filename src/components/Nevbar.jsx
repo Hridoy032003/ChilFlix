@@ -53,6 +53,7 @@ const Nevbar = () => {
                 <Link to='/Movie' className='hover:text-gray-400'>Top Movies</Link>
               
             </div>
+           
             <div className='relative flex px-10 items-center gap-7  '>
                <div>
                     <Input
@@ -85,6 +86,11 @@ const Nevbar = () => {
                     Sing in
                 </Button>
                 </Link>
+            </div>
+            <div className='h-h'>
+                <Link to='/' className='hover:text-gray-400'>Home</Link>
+                <Link to='/Movie' className='hover:text-gray-400'>Top Movies</Link>
+                
             </div>
         </div>
     );
