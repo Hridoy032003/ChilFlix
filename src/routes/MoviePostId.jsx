@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Nevbar from '../components/Nevbar'; // Assuming the NavBar component
 import { useQuery } from '@tanstack/react-query';
+import { useWatchlist } from '../WatchlistContext'; // Import useWatchlist
 import {
     Card,
     CardAction,
@@ -22,20 +23,28 @@ const fetchMovieById = async (id) => {
 
 const MoviePostId = () => {
     const { id } = useParams();
+    const { addToWatchlist, removeFromWatchlist, isMovieInWatchlist } = useWatchlist();
 
-    const { data, isLoading, isError, error } = useQuery({
+    const { data: movie, isLoading, isError, error } = useQuery({ // Renamed data to movie for clarity
         queryKey: ['movie', id],
         queryFn: () => fetchMovieById(id)
     });
 
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Error: {error.message}</div>;
+    if (isLoading) return <div className="bg-gray-900 min-h-screen text-white flex justify-center items-center">Loading...</div>;
+    if (isError) return <div className="bg-gray-900 min-h-screen text-white flex justify-center items-center">Error: {error.message}</div>;
 
-    if (!data) {
-        return <div>No data available</div>;
+    if (!movie) { // Check movie directly
+        return <div className="bg-gray-900 min-h-screen text-white flex justify-center items-center">No movie data available</div>;
     }
 
-    const movie = data;
+    const handleWatchlistToggle = () => {
+        if (isMovieInWatchlist(movie.id)) {
+            removeFromWatchlist(movie.id);
+        } else {
+            addToWatchlist(movie); // Add the whole movie object
+        }
+    };
+
     return (
         <div className="bg-gray-900 min-h-screen text-white">
             <Nevbar />
@@ -82,8 +91,16 @@ const MoviePostId = () => {
                             </a>
                         )}
                         <div className="mt-auto pt-4"> {/* Pushes button to bottom */}
-                            <Button size="lg" className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white transition-colors">
-                                Add to Watchlist
+                            <Button
+                                size="lg"
+                                className={`w-full sm:w-auto text-white transition-colors ${
+                                    isMovieInWatchlist(movie.id)
+                                        ? 'bg-gray-600 hover:bg-gray-700'
+                                        : 'bg-red-600 hover:bg-red-700'
+                                }`}
+                                onClick={handleWatchlistToggle}
+                            >
+                                {isMovieInWatchlist(movie.id) ? 'Remove from Watchlist' : 'Add to Watchlist'}
                             </Button>
                         </div>
                     </div>

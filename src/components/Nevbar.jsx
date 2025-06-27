@@ -60,36 +60,34 @@ const Nevbar = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className='relative flex px-10 items-center gap-7'>
-                <div className='hidden md:flex items-center gap-x-8'>
-                    <Link to='/' className='hover:text-gray-400 transition-colors'>Home</Link>
-                    <Link to='/Movie' className='hover:text-gray-400 transition-colors'>Top Movies</Link>
-                    <div className='relative'>
-                        <Input
-                            placeholder="Search"
-                            className='text-gray-700 px-4 py-2 rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                            onChange={handleTextChange}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
-                        />
-                        {isFocused && title && filteredMovies.length > 0 && (
-                            <ul className='absolute mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto'>
-                                {filteredMovies.map((movie) => (
-                                    <li key={movie.id} className="py-2 px-4 text-gray-800 hover:bg-gray-100 cursor-pointer">
-                                        <NavLink to={`/post/${movie.id}`} onClick={() => setIsFocused(false)}>
-                                            {movie.title}
-                                        </NavLink>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                    <Link to='/Login'>
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition-colors">
-                            Sign in
-                        </Button>
-                    </Link>
+            <div className='hidden md:flex items-center gap-x-8'>
+                <Link to='/' className='hover:text-gray-400 transition-colors'>Home</Link>
+                <Link to='/Movie' className='hover:text-gray-400 transition-colors'>Top Movies</Link>
+                <div className='relative'>
+                    <Input
+                        placeholder="Search"
+                        className='text-gray-700 px-4 py-2 rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                        onChange={handleTextChange}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                    />
+                    {isFocused && title && filteredMovies.length > 0 && (
+                        <ul className='absolute mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto'>
+                            {filteredMovies.map((movie) => (
+                                <li key={movie.id} className="py-2 px-4 text-gray-800 hover:bg-gray-100 cursor-pointer">
+                                    <NavLink to={`/post/${movie.id}`} onClick={() => setIsFocused(false)}>
+                                        {movie.title}
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
+                <Link to='/Login'>
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition-colors">
+                        Sign in
+                    </Button>
+                </Link>
             </div>
 
             {/* Mobile Navigation Menu */}
@@ -97,6 +95,7 @@ const Nevbar = () => {
                 <div className='md:hidden absolute top-16 left-0 right-0 bg-gray-800 p-4 flex flex-col gap-y-4 z-20 shadow-lg'>
                     <Link to='/' className='hover:text-gray-400 transition-colors block py-2' onClick={toggleMenu}>Home</Link>
                     <Link to='/Movie' className='hover:text-gray-400 transition-colors block py-2' onClick={toggleMenu}>Top Movies</Link>
+                    <Link to='/watchlist' className='hover:text-gray-400 transition-colors block py-2' onClick={toggleMenu}>My Watchlist</Link> {/* Added Watchlist Link */}
                     <div className='relative'>
                         <Input
                             placeholder="Search"

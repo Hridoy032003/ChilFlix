@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { ApiProvider } from './ApiContext.jsx'
+import { WatchlistProvider } from './WatchlistContext.jsx'; // Import WatchlistProvider
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ClerkProvider } from '@clerk/clerk-react'
 
@@ -16,8 +17,9 @@ createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={queryClient}>
 
     <ApiProvider>
-      <App />
-
+      <WatchlistProvider>
+        <App />
+      </WatchlistProvider>
     </ApiProvider>
     </QueryClientProvider>
     </ClerkProvider>
