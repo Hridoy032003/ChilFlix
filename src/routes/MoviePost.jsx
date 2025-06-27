@@ -24,28 +24,30 @@ const MoviePost = () => {
 
   const movies = data.results;
   return (
-    <div>
-      <Nevbar  />
-      <div className=" bg-gray-800 ">
-        <h1 className="font-bold text-5xl p-10 text-white ml-15 ">All Movies</h1>
-        <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 p-30 gap-10 -mt-10">
+    <div className="bg-gray-900 min-h-screen"> {/* Consistent background */}
+      <Nevbar />
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="font-bold text-4xl md:text-5xl pt-6 pb-8 text-white text-center md:text-left">All Movies</h1>
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 md:gap-8">
           {movies.map((movie) => {
             return (
-               <NavLink key={movie.id} to={`/post/${movie.id}`}>
-                <Card className="p-10">
-                  <div className="flex justify-between gap-15">
-                    {" "} 
+              <NavLink key={movie.id} to={`/post/${movie.id}`} className="group">
+                <Card className="bg-gray-800 p-4 rounded-lg shadow-lg h-full flex flex-col transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:scale-105">
+                  <div className="flex gap-4">
                     <img
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt="sdff"
-                      className="h-50 w-50 object-cover rounded-xl"
+                      alt={movie.title}
+                      className="w-24 md:w-32 h-auto object-cover rounded-md self-start" // Adjusted image size
                     />
-                    <div className="flex flex-col gap-10 container justify-between">
-                      <h2 className="text-2xl ">{movie.title}</h2>
-                      <span>Rating: {movie.vote_average}</span>
-                      <div>
-
-                        <Button className="coursar-pointer">
+                    <div className="flex flex-col gap-2 flex-grow">
+                      <h2 className="text-xl md:text-2xl font-semibold text-white group-hover:text-red-400 transition-colors">
+                        {movie.title}
+                      </h2>
+                      <span className="text-gray-300 text-sm">
+                        Rating: {movie.vote_average.toFixed(1)}
+                      </span>
+                      <div className="mt-auto pt-2"> {/* Pushes button to bottom */}
+                        <Button size="sm" className="w-full bg-red-600 hover:bg-red-700 text-white transition-colors">
                           Add to Watchlist
                         </Button>
                       </div>
